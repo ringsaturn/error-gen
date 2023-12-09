@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package errors;
+package errors.v1;
 
 option go_package = "github.com/ringsaturn/protoc-gen-go-errors/errors;errors";
 
