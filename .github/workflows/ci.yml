@@ -7,8 +7,8 @@ on:
     branches: [main]
 
 jobs:
-  golangci:
-    name: golangci-lint
+  lint:
+    name: lint
     strategy:
       matrix:
         go: ["1.21"]
@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go }}
 
@@ -31,22 +31,23 @@ jobs:
           version: latest
           args: --timeout=5m
 
+      - uses: bufbuild/buf-setup-action@v1
+        with:
+          version: "latest"
+      - uses: bufbuild/buf-lint-action@v1
+
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go: ["1.20", "1.21"]
+        go: ["1.21"]
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go }}
-
-      - name: Install go pkgs
-        run: |
-          go mod download
 
       - name: Run coverage
         run: go test -race -coverprofile=coverage.txt -covermode=atomic
