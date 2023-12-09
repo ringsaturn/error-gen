@@ -50,7 +50,4 @@ jobs:
           go-version: ${{ matrix.go }}
 
       - name: Run coverage
-        run: go test -race -coverprofile=coverage.txt -covermode=atomic
-
-      - name: Bench
-        run: go test -bench=. ./...
+        run: go test -race -coverprofile=coverage.txt -covermode=atomic ./...
