@@ -8,7 +8,6 @@ import (
 	"github.com/ringsaturn/protoc-gen-go-errors/errors"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
-
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/proto"
 )
